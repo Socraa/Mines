@@ -10,6 +10,10 @@ const modalPoints = document.querySelector('#modalPoints');
 
 let num = 0;
 
+
+
+
+
 for (let i = 0; i < emo.length; i++){
     let box = document.createElement('div');
     box.className = "content";
@@ -18,6 +22,7 @@ for (let i = 0; i < emo.length; i++){
 
     box.addEventListener('click', event =>{
         box.classList.add('boxOpen'); // makes the ::after rotate180 deg when click
+        console.log(document.querySelectorAll('.boxOpen').length);
 
         if(box.innerHTML == "💣"){
             setTimeout(() =>{
@@ -26,18 +31,18 @@ for (let i = 0; i < emo.length; i++){
             }, 400); 
         } else if(box.innerHTML == "💵"){
             num +=  100;
-
+            console.log("Current points: " + num);
         }
 
-        if(num == 2400){
+        if(document.querySelectorAll('.boxOpen').length == emo.length - 1) {
             setTimeout(()=>{
                 result.innerHTML = "You Win!!";
-                modalPoints = points.textContent;
+                modalPoints.innerHTML = points.textContent;
                 modal.style.display = 'flex';
             }, 400);
         }
 
-        points.textContent = "Points: " + num; 
+        points.textContent = "Points: " + new Intl.NumberFormat().format(num); // this code is to add commo to thousand
     })
 
     document.querySelector('.inside').appendChild(box);

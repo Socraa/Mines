@@ -120,6 +120,10 @@ position: relative;
     font-size: 70px;
 }
 
+#modalPoints{
+    font-size: 25px;
+}
+
 .modal-content button{
     padding: 10px;
     font-size: 20px;
