@@ -9,18 +9,12 @@
 <body>
 
     <div class="main">
-        <div class="inside">
-
-        </div>
+        <button id="hidden"></button>
+        <div class="inside"></div>
         <div class="res">
-            <p id="points">Points: $</p>
+            <p id="points">Points: </p>
             <button id="claim">claim</button>
-            <label for="level"></label>
-            <select id="level">
-                <option value="Level-1">Level 1</option>
-                <option value="Level-2">Level 2</option>
-                <option value="Level-3">Level 3</option>
-            </select>
+            <input type="number">
             <p>Total:</p>
 
         </div>
@@ -29,11 +23,13 @@
 
     <div class="modal" style="display: none;">
         <div class="modal-content">
-            <p>You Lose!!</p>
+            <p id="win-or-lose">You Lose!!</p>
+            <p id="modalPoints"></p>
             <button id="play">Play Again</button>
 
         </div>
     </div>
+
     
 </body>
 <script src="script.js"></script>

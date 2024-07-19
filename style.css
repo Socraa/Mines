@@ -4,7 +4,7 @@
 }
 
 body{
-    background-color: darkgray;
+    background-image: url(m.jpg);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,7 +20,7 @@ body{
     align-items: center;
     gap: 30px;
     flex-direction: column;
-    background-color: gray;
+    background-color: rgb(128, 33, 103);
     border-radius: 20px;
     padding: 0px 10px;
 
@@ -28,28 +28,27 @@ body{
 .main button{
     padding: 10px;
     font-size: 20px;
-    background-color: lightgray;
+    background-color: rgb(172, 80, 148);
     border: 2px solid;
     border-radius: 10px;
     transition: all ease 0.1s;
 }
 .main button:hover{
-    background-color: gray;
+    background-color: rgb(148, 75, 128);
     transform: scale(1.02);
 }
 .main button:active{
-    background-color: lightgray;
+    background-color: rgb(172, 80, 148);
     transform: scale(1);
 }
 
 .inside{
-    width: 700px;
-    height: 700px;
+
     border: 2px solid;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    background-color: rgb(170, 146, 146);
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    background-color: rgb(188, 74, 157);
 
 }
 
@@ -67,13 +66,18 @@ position: relative;
     position: absolute;
     inset: 0; /*shortcut for top, right, buttom, left all setting to 0, content will stretch to all angel*/
     backface-visibility: hidden; /*hides the back of the content*/
-    background-color: gray;
+    background-color: rgb(164, 66, 138);
     transition: transform 0.6s;
+    /* opacity: 0.5; */
 }
 
 .boxOpen::after{
     transform: rotateY(180deg);
 
+}
+
+.hidden::after{
+    opacity: 0.9;
 }
 
 .res{
@@ -96,11 +100,11 @@ position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .modal-content{
-    height: 400px;
-    width: 500px;
+    padding: 40px;
     background-color: rgb(219, 161, 161);
     border: 2px solid;
     border-radius: 10px;
@@ -109,6 +113,7 @@ position: relative;
     flex-direction: column;
     justify-content: center;
     gap: 50px;
+    transition: all ease 0.5s;
 }
 
 .modal-content p{
@@ -132,5 +137,13 @@ position: relative;
 .modal-content button:active{
     transform: scale(1);
     background-color: rgb(172, 135, 135);
+}
+
+#hidden{
+    position: absolute;
+    right: 160px;
+    bottom: 300px;
+    border: 0px;
+    background-color: #910045;
 }
 
