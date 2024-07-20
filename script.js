@@ -10,10 +10,6 @@ const modalPoints = document.querySelector('#modalPoints');
 
 let num = 0;
 
-
-
-
-
 for (let i = 0; i < emo.length; i++){
     let box = document.createElement('div');
     box.className = "content";
@@ -21,8 +17,13 @@ for (let i = 0; i < emo.length; i++){
 
 
     box.addEventListener('click', event =>{
+
+        if(box.classList.contains('boxOpen')){ // if the box contains the boxOpen list, nothing will happen. It fixes the clickable box even tho it's open already
+            return;
+        }
+
         box.classList.add('boxOpen'); // makes the ::after rotate180 deg when click
-        console.log(document.querySelectorAll('.boxOpen').length);
+
 
         if(box.innerHTML == "💣"){
             setTimeout(() =>{
@@ -42,7 +43,7 @@ for (let i = 0; i < emo.length; i++){
             }, 400);
         }
 
-        points.textContent = "Points: " + new Intl.NumberFormat().format(num); // this code is to add commo to thousand
+        points.textContent = "Points: " + new Intl.NumberFormat().format(num); //  new Intl.NumberFormat().format(num) | this code is to add commo to numbers
     })
 
     document.querySelector('.inside').appendChild(box);
@@ -52,7 +53,7 @@ for (let i = 0; i < emo.length; i++){
     })
 }
 
-play.addEventListener('click', ()=>{
+play.addEventListener('click', ()=>{ // reload the window when clicked
     window.location.reload();
 })
 

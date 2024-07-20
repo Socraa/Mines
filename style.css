@@ -43,7 +43,6 @@ body{
 }
 
 .inside{
-
     border: 2px solid;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -83,14 +82,31 @@ position: relative;
 .res{
     display: flex;
     align-items: center;
-    justify-content: center;
-    border: 2px solid;
+    justify-content: space-around;
+    /* border: 2px solid; */
     gap: 30px;
     padding: 10px;
     overflow: hidden;
     width: 100%;
 
+}
+.res p{
+    color: white;
+}
 
+.res input{
+    font-size: 20px;
+    width: 40px;
+    padding: 5px;
+    background-color: transparent;
+    border: 0px;
+    color: white;
+}
+
+#bombs{
+    border: 2px solid;
+    padding: 0px 0px 0px 10px;
+    color: white;
 }
 
 .modal{
