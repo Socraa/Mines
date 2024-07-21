@@ -121,7 +121,7 @@ position: relative;
 
 .modal-content{
     padding: 40px;
-    background-color: rgb(219, 161, 161);
+    background-color:rgb(168, 99, 150);
     border: 2px solid;
     border-radius: 10px;
     display: flex;
@@ -146,17 +146,17 @@ position: relative;
     border: 2px solid;
     border-radius: 10px;
     transition: all ease 0.03s;
-    background-color: rgb(172, 135, 135);
+    background-color:rgb(156, 80, 135);
 }
 
 .modal-content button:hover{
     transform: scale(1.03);
-    background-color: rgb(149, 115, 115);
+    background-color:rgb(164, 66, 138);
 }
 
 .modal-content button:active{
     transform: scale(1);
-    background-color: rgb(172, 135, 135);
+    background-color:rgb(156, 80, 135);
 }
 
 #hidden{
