@@ -9,7 +9,7 @@ const modalPoints = document.querySelector('#modalPoints'); // modal points
 const inside = document.querySelector('.inside'); // where the created div will be
 const bombInput = document.querySelector('#bombs input'); // the number of bombs you choose
 const multi = document.querySelector('#multiplier');
-let currentValue = parseFloat(multi.innerHTML, 10);
+let previous = parseFloat(bombInput.value);
 let num = 0;
 
 
@@ -78,13 +78,13 @@ function rederBoxes(){
         inside.appendChild(box);
         }
 
-        if(bombInput.value + 1){
-            currentValue += 0.5;
-            multi.innerHTML = currentValue;
-        }else{
-            currentValue -= 0.5;
-            multi.innerHTML = currentValue;
-        }
+        // if(bombInput.value + 1){
+        //     currentValue += 0.5;
+        //     multi.innerHTML = currentValue;
+        // }else if(bombInput.value - 1){
+        //     currentValue -= 0.5;
+        //     multi.innerHTML = currentValue;
+        // }
 
     
 
@@ -100,6 +100,22 @@ function rederBoxes(){
 // so if you input "4" an array will be Array(4) creating it 4 slots
 bombInput.addEventListener('change',()=>{ 
     const bombCount = parseInt(bombInput.value, 10);
+// bombCount acts like the current bombInput after you change it. previous is before you change it
+// that's why previous is not on the add event listener because it's before you change it
+
+    const difference = bombCount - previous; //difference is the result if you subtract the 2
+
+    if(difference > 0){
+        // if difference is > 0. ex: 4(bombCount) - 1(previous) = 3(difference), then multi.InnerHTML(1) will be plus to 1.5(3 * 0.5) so the answer is 2.5
+        // toFixed is the number of decimal. ex: toFixed(1) 1.1 | toFixed(2) 1.01
+        multi.innerHTML = (parseFloat(multi.innerHTML) + difference * 0.5).toFixed(1);
+    }else if(difference < 0){
+        // if difference is < 0. ex: 2(bombCount) - 3(previous) = -1(difference), then multi.InnerHTML(1) will be plus to -0.5(-1 * 0.5)
+        multi.innerHTML = (parseFloat(multi.innerHTML) + difference * 0.5).toFixed(1);
+    }
+
+    previous = bombCount;
+
     generateEmo(bombCount);
     rederBoxes();
 })
