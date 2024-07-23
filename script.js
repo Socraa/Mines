@@ -8,8 +8,13 @@ const hidden = document.querySelector('#hidden'); //secret
 const modalPoints = document.querySelector('#modalPoints'); // modal points
 const inside = document.querySelector('.inside'); // where the created div will be
 const bombInput = document.querySelector('#bombs input'); // the number of bombs you choose
-
+const multi = document.querySelector('#multiplier');
+let currentValue = parseFloat(multi.innerHTML, 10);
 let num = 0;
+
+
+let n = Number(multi.innerHTML);
+
 
 function generateEmo(bombCount){
     emo.length = 0; // reset the lenght of the emo so that it will not add up
@@ -28,6 +33,7 @@ function shuffle(){
 
 function rederBoxes(){
     inside.innerHTML = '';
+
     const shuffleEmo = shuffle();
 
 
@@ -64,11 +70,24 @@ function rederBoxes(){
             }
 
             points.textContent = "Points: " + new Intl.NumberFormat().format(num); //  new Intl.NumberFormat().format(num) | this code is to add commo to numbers
+
+
+
         })
 
         inside.appendChild(box);
-
         }
+
+        if(bombInput.value + 1){
+            currentValue += 0.5;
+            multi.innerHTML = currentValue;
+        }else{
+            currentValue -= 0.5;
+            multi.innerHTML = currentValue;
+        }
+
+    
+
     }
 // When the bombInput is changed, it will turn into a integer using "parseInt(bombInput.value)"
 // the reason for the 10 is because it's a radix base.
@@ -98,5 +117,7 @@ play.addEventListener('click', ()=>{ // reload the window when clicked
 
 generateEmo(parseInt(bombInput.value, 10));
 rederBoxes();
+
+
 
 
