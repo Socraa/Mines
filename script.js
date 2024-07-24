@@ -12,6 +12,9 @@ const multi = document.querySelector('#multiplier');
 let previous = parseFloat(bombInput.value);
 let num = 0;
 
+let zeroPointFive = 0.5;
+let b = parseFloat(zeroPointFive);
+
 
 let n = Number(multi.innerHTML);
 
@@ -57,11 +60,13 @@ function rederBoxes(){
                     modal.style.display = "flex";
                 }, 200); 
             } else if(box.innerHTML == "💵"){
+                let currentValueee = parseFloat(multi.innerHTML);
                 num +=  100;
+                num *= currentValueee;
                 console.log("Current points: " + num);
             }
 
-            if(document.querySelectorAll('.boxOpen').length == emo.length - bombInput.value) {
+            if(document.querySelectorAll('.boxOpen').length == emo.length - bombInput.value && box.innerHTML != "💣") {
                 setTimeout(()=>{
                     result.innerHTML = "You Win!!";
                     modalPoints.innerHTML = points.textContent;
@@ -72,7 +77,12 @@ function rederBoxes(){
             points.textContent = "Points: " + new Intl.NumberFormat().format(num); //  new Intl.NumberFormat().format(num) | this code is to add commo to numbers
             
             for(let i = 0; i < box.classList.contains('boxOpen'); i++){
-                multi.innerHTML = (parseFloat(multi.innerHTML))  + 0.5;
+                if (box.innerHTML == "💵"){
+                    let currentValuee = parseFloat(multi.innerHTML); // will convert the multi.innerHTML into an integer
+                    multi.innerHTML = currentValuee + 0.5 + "x"; // will add the 0.5 to the multi.innerHTML
+                    
+                }
+                
             }
 
 
