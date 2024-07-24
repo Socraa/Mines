@@ -110,7 +110,7 @@ bombInput.addEventListener('change',()=>{
         // toFixed is the number of decimal. ex: toFixed(1) 1.1 | toFixed(2) 1.01
         multi.innerHTML = (parseFloat(multi.innerHTML) + difference * 0.5).toFixed(1);
     }else if(difference < 0){
-        // if difference is < 0. ex: 2(bombCount) - 3(previous) = -1(difference), then multi.InnerHTML(1) will be plus to -0.5(-1 * 0.5)
+        // if difference is < 0. ex: 2(bombCount) - 3(previous) = -1(difference), then multi.InnerHTML(2) will be plus to -0.5(-1 * 0.5)
         multi.innerHTML = (parseFloat(multi.innerHTML) + difference * 0.5).toFixed(1);
     }
 
