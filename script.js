@@ -12,12 +12,9 @@ const multi = document.querySelector('#multiplier');
 let previous = parseFloat(bombInput.value);
 let num = 0;
 
-let zeroPointFive = 0.5;
-let b = parseFloat(zeroPointFive);
-
-
-let n = Number(multi.innerHTML);
-
+function setReadOnly(isReadOnly){ // function to set the bombInput into a read only if the game is running
+    bombInput.readOnly = isReadOnly;
+}
 
 function generateEmo(bombCount){
     emo.length = 0; // reset the lenght of the emo so that it will not add up
@@ -46,7 +43,8 @@ function rederBoxes(){
         box. innerHTML = shuffleEmo[i];
 
         box.addEventListener('click', event =>{
-
+            setReadOnly(true); // if a box got clicked, it will trigger the readOnly.
+            isRunning = true;
             if(box.classList.contains('boxOpen')){ // if the box contains the boxOpen list, nothing will happen. It fixes the clickable box even tho it's open already
                 return;
             }
@@ -55,15 +53,15 @@ function rederBoxes(){
 
 
             if(box.innerHTML == "💣"){
+                setReadOnly(false);
                 setTimeout(() =>{
                     modalPoints.textContent = points.textContent;
                     modal.style.display = "flex";
                 }, 200); 
             } else if(box.innerHTML == "💵"){
                 let currentValueee = parseFloat(multi.innerHTML);
-                num +=  100;
-                num *= currentValueee;
-                console.log("Current points: " + num);
+                num = num + 100 * currentValueee;
+                
             }
 
             if(document.querySelectorAll('.boxOpen').length == emo.length - bombInput.value && box.innerHTML != "💣") {
@@ -74,7 +72,7 @@ function rederBoxes(){
                 }, 400);
             }
 
-            points.textContent = "Points: " + new Intl.NumberFormat().format(num); //  new Intl.NumberFormat().format(num) | this code is to add commo to numbers
+            points.textContent = "Points: " + new Intl.NumberFormat().format(num); //  new Intl.NumberFormat().format(num) | this code is to add comma to numbers
             
             for(let i = 0; i < box.classList.contains('boxOpen'); i++){
                 if (box.innerHTML == "💵"){
@@ -98,9 +96,6 @@ function rederBoxes(){
         //     currentValue -= 0.5;
         //     multi.innerHTML = currentValue;
         // }
-
-    
-
     }
 // When the bombInput is changed, it will turn into a integer using "parseInt(bombInput.value)"
 // the reason for the 10 is because it's a radix base.
@@ -112,6 +107,7 @@ function rederBoxes(){
 // and the bombInput will became the bombCount and the bombCount will serve as a paramater in generateEmo
 // so if you input "4" an array will be Array(4) creating it 4 slots
 bombInput.addEventListener('change',()=>{ 
+    
     const bombCount = parseInt(bombInput.value, 10);
 // bombCount acts like the current bombInput after you change it. previous is before you change it
 // that's why previous is not on the add event listener because it's before you change it
@@ -121,10 +117,10 @@ bombInput.addEventListener('change',()=>{
     if(difference > 0){
         // if difference is > 0. ex: 4(bombCount) - 1(previous) = 3(difference), then multi.InnerHTML(1) will be plus to 1.5(3 * 0.5) so the answer is 2.5
         // toFixed is the number of decimal. ex: toFixed(1) 1.1 | toFixed(2) 1.01
-        multi.innerHTML = (parseFloat(multi.innerHTML) + difference * 0.5).toFixed(1)  + "x";
+        multi.innerHTML = (parseFloat(multi.innerHTML) + difference * 1.5).toFixed(1)  + "x";
     }else if(difference < 0){
         // if difference is < 0. ex: 2(bombCount) - 3(previous) = -1(difference), then multi.InnerHTML(1) will be plus to -0.5(-1 * 0.5)
-        multi.innerHTML = (parseFloat(multi.innerHTML) + difference * 0.5).toFixed(1);
+        multi.innerHTML = (parseFloat(multi.innerHTML) + difference * 1.5).toFixed(1);
     }
 
     previous = bombCount;
@@ -146,7 +142,3 @@ play.addEventListener('click', ()=>{ // reload the window when clicked
 
 generateEmo(parseInt(bombInput.value, 10));
 rederBoxes();
-
-
-
-
